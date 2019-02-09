@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "bibbgaares-20190208110041-authRole",
+            "UnauthRoleArn": "arn:aws:iam::150179862823:role/bibbgaares-20190208110041-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::150179862823:role/bibbgaares-20190208110041-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "bibbgaares-20190208110041-deployment",
+            "UnauthRoleName": "bibbgaares-20190208110041-unauthRole",
+            "StackName": "bibbgaares-20190208110041",
+            "StackId": "arn:aws:cloudformation:us-east-1:150179862823:stack/bibbgaares-20190208110041/b0e6add0-2bba-11e9-979e-0a780bcb48a6"
+        }
+    }
+}

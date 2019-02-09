@@ -1,0 +1,243 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "Root stack for the Amplify AWS CloudFormation provider",
+	"Parameters": {
+		"DeploymentBucketName": {
+			"Description": "Name of the common deployment bucket provided by the parent stack",
+			"Type": "String",
+			"Default": "DeploymentBucket"
+		},
+		"AuthRoleName": {
+			"Type": "String",
+			"Default": "AuthRoleName"
+		},
+		"UnauthRoleName": {
+			"Type": "String",
+			"Default": "UnauthRoleName"
+		}
+	},
+	"Resources": {
+		"DeploymentBucket": {
+			"Type": "AWS::S3::Bucket",
+			"DeletionPolicy": "Retain",
+			"Properties": {
+				"BucketName": {
+					"Ref": "DeploymentBucketName"
+				}
+			}
+		},
+		"AuthRole": {
+			"Type": "AWS::IAM::Role",
+			"Properties": {
+				"RoleName": {
+					"Ref": "AuthRoleName"
+				},
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Sid": "",
+							"Effect": "Allow",
+							"Principal": {
+								"Federated": "cognito-identity.amazonaws.com"
+							},
+							"Action": "sts:AssumeRoleWithWebIdentity",
+							"Condition": {
+								"ForAnyValue:StringLike": {
+									"cognito-identity.amazonaws.com:amr": "authenticated"
+								}
+							}
+						}
+					]
+				}
+			}
+		},
+		"UnauthRole": {
+			"Type": "AWS::IAM::Role",
+			"Properties": {
+				"RoleName": {
+					"Ref": "UnauthRoleName"
+				},
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Sid": "",
+							"Effect": "Allow",
+							"Principal": {
+								"Federated": "cognito-identity.amazonaws.com"
+							},
+							"Action": "sts:AssumeRoleWithWebIdentity",
+							"Condition": {
+								"ForAnyValue:StringLike": {
+									"cognito-identity.amazonaws.com:amr": "unauthenticated"
+								}
+							}
+						}
+					]
+				}
+			}
+		},
+		"hostingS3AndCloudFront": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/bibbgaares-20190208110041-deployment/amplify-cfn-templates/hosting/template.json",
+				"Parameters": {}
+			}
+		},
+		"authcognito3765d540": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/bibbgaares-20190208110041-deployment/amplify-cfn-templates/auth/cognito3765d540-cloudformation-template.yml",
+				"Parameters": {
+					"identityPoolName": "cognito3765d540_identitypool_3765d540",
+					"allowUnauthenticatedIdentities": false,
+					"thirdPartyAuth": false,
+					"lambdaLogPolicy": "cognito3765d540_lambda_log_policy",
+					"openIdLambdaRoleName": "cognito3765d540_openid_lambda_role",
+					"openIdRolePolicy": "cognito3765d540_openid_pass_role_policy",
+					"openIdLambdaIAMPolicy": "cognito3765d540_openid_lambda_iam_policy",
+					"openIdLogPolicy": "cognito3765d540_openid_lambda_log_policy",
+					"userPoolName": "cognito3765d540_userpool_3765d540",
+					"autoVerifiedAttributes": "email",
+					"mfaConfiguration": "OFF",
+					"mfaTypes": "SMS Text Message",
+					"roleName": "cognito3765d540_sns-role",
+					"roleExternalId": "cognito3765d540_role_external_id",
+					"policyName": "cognito3765d540-sns-policy",
+					"smsAuthenticationMessage": "Your authentication code is {####}",
+					"smsVerificationMessage": "Your verification code is {####}",
+					"emailVerificationSubject": "Your verification code",
+					"emailVerificationMessage": "Your verification code is {####}",
+					"defaultPasswordPolicy": false,
+					"passwordPolicyMinLength": 8,
+					"passwordPolicyCharacters": "Requires Lowercase,Requires Uppercase,Requires Numbers,Requires Symbols",
+					"requiredAttributes": "email",
+					"userpoolClientName": "cognito3765d540_app_client",
+					"userpoolClientGenerateSecret": true,
+					"userpoolClientRefreshTokenValidity": 30,
+					"userpoolClientReadAttributes": "email",
+					"mfaLambdaRole": "cognito3765d540_totp_lambda_role",
+					"mfaLambdaLogPolicy": "cognito3765d540_totp_lambda_log_policy",
+					"mfaPassRolePolicy": "cognito3765d540_totp_pass_role_policy",
+					"mfaLambdaIAMPolicy": "cognito3765d540_totp_lambda_iam_policy",
+					"userpoolClientLambdaRole": "cognito3765d540_userpoolclient_lambda_role",
+					"userpoolClientLogPolicy": "cognito3765d540_userpoolclient_lambda_log_policy",
+					"userpoolClientLambdaPolicy": "cognito3765d540_userpoolclient_lambda_iam_policy",
+					"userpoolClientSetAttributes": false,
+					"useDefault": "default",
+					"unAuthRoleName": "bibbgaares-20190208110041-unauthRole",
+					"authRoleName": "bibbgaares-20190208110041-authRole",
+					"unAuthRoleArn": "arn:aws:iam::150179862823:role/bibbgaares-20190208110041-unauthRole",
+					"authRoleArn": "arn:aws:iam::150179862823:role/bibbgaares-20190208110041-authRole",
+					"resourceName": "cognito3765d540",
+					"authSelections": "identityPoolAndUserPool"
+				}
+			}
+		},
+		"analyticsbibbgaares": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/bibbgaares-20190208110041-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"Parameters": {
+					"appName": "bibbgaares",
+					"roleName": "pinpointLambdaRole049ebf0b",
+					"cloudWatchPolicyName": "cloudWatchPolicy049ebf0b",
+					"pinpointPolicyName": "pinpointPolicy049ebf0b",
+					"authPolicyName": "pinpoint_amplify_049ebf0b",
+					"unauthPolicyName": "pinpoint_amplify_049ebf0b",
+					"authRoleName": "bibbgaares-20190208110041-authRole",
+					"unauthRoleName": "bibbgaares-20190208110041-unauthRole",
+					"IAMPrefix": "150179862823"
+				}
+			}
+		},
+		"storagebibbaresstore": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/bibbgaares-20190208110041-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"Parameters": {
+					"bucketName": "bibbgaares52fbb470918947319a396ebb58526e2c",
+					"authPolicyName": "s3_amplify_5583a7c0",
+					"unauthPolicyName": "s3_amplify_5583a7c0",
+					"authRoleName": "bibbgaares-20190208110041-authRole",
+					"unauthRoleName": "bibbgaares-20190208110041-unauthRole",
+					"authPermissions": "rw",
+					"unauthPermissions": ""
+				}
+			}
+		}
+	},
+	"Outputs": {
+		"Region": {
+			"Description": "CloudFormation provider root stack Region",
+			"Value": {
+				"Ref": "AWS::Region"
+			},
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-Region"
+				}
+			}
+		},
+		"StackName": {
+			"Description": "CloudFormation provider root stack ID",
+			"Value": {
+				"Ref": "AWS::StackName"
+			},
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-StackName"
+				}
+			}
+		},
+		"StackId": {
+			"Description": "CloudFormation provider root stack name",
+			"Value": {
+				"Ref": "AWS::StackId"
+			},
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-StackId"
+				}
+			}
+		},
+		"DeploymentBucketName": {
+			"Description": "CloudFormation provider root stack deployment bucket name",
+			"Value": {
+				"Ref": "DeploymentBucketName"
+			},
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-DeploymentBucketName"
+				}
+			}
+		},
+		"AuthRoleArn": {
+			"Value": {
+				"Fn::GetAtt": [
+					"AuthRole",
+					"Arn"
+				]
+			}
+		},
+		"UnauthRoleArn": {
+			"Value": {
+				"Fn::GetAtt": [
+					"UnauthRole",
+					"Arn"
+				]
+			}
+		},
+		"AuthRoleName": {
+			"Value": {
+				"Ref": "AuthRole"
+			}
+		},
+		"UnauthRoleName": {
+			"Value": {
+				"Ref": "UnauthRole"
+			}
+		}
+	}
+}

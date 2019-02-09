@@ -1,0 +1,57 @@
+{
+    "identityPoolName": "cognito3765d540_identitypool_3765d540",
+    "allowUnauthenticatedIdentities": false,
+    "thirdPartyAuth": false,
+    "lambdaLogPolicy": "cognito3765d540_lambda_log_policy",
+    "openIdLambdaRoleName": "cognito3765d540_openid_lambda_role",
+    "openIdRolePolicy": "cognito3765d540_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "cognito3765d540_openid_lambda_iam_policy",
+    "openIdLogPolicy": "cognito3765d540_openid_lambda_log_policy",
+    "userPoolName": "cognito3765d540_userpool_3765d540",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "cognito3765d540_sns-role",
+    "roleExternalId": "cognito3765d540_role_external_id",
+    "policyName": "cognito3765d540-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Uppercase",
+        "Requires Numbers",
+        "Requires Symbols"
+    ],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientName": "cognito3765d540_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "cognito3765d540_totp_lambda_role",
+    "mfaLambdaLogPolicy": "cognito3765d540_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "cognito3765d540_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "cognito3765d540_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "cognito3765d540_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "cognito3765d540_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "cognito3765d540_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "useDefault": "default",
+    "unAuthRoleName": "bibbgaares-20190208110041-unauthRole",
+    "authRoleName": "bibbgaares-20190208110041-authRole",
+    "unAuthRoleArn": "arn:aws:iam::150179862823:role/bibbgaares-20190208110041-unauthRole",
+    "authRoleArn": "arn:aws:iam::150179862823:role/bibbgaares-20190208110041-authRole",
+    "resourceName": "cognito3765d540",
+    "authSelections": "identityPoolAndUserPool"
+}

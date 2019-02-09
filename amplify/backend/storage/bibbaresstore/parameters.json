@@ -1,0 +1,9 @@
+{
+    "bucketName": "bibbgaares52fbb470918947319a396ebb58526e2c",
+    "authPolicyName": "s3_amplify_5583a7c0",
+    "unauthPolicyName": "s3_amplify_5583a7c0",
+    "authRoleName": "bibbgaares-20190208110041-authRole",
+    "unauthRoleName": "bibbgaares-20190208110041-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": ""
+}

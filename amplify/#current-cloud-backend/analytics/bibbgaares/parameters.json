@@ -1,0 +1,11 @@
+{
+    "appName": "bibbgaares",
+    "roleName": "pinpointLambdaRole049ebf0b",
+    "cloudWatchPolicyName": "cloudWatchPolicy049ebf0b",
+    "pinpointPolicyName": "pinpointPolicy049ebf0b",
+    "authPolicyName": "pinpoint_amplify_049ebf0b",
+    "unauthPolicyName": "pinpoint_amplify_049ebf0b",
+    "authRoleName": "bibbgaares-20190208110041-authRole",
+    "unauthRoleName": "bibbgaares-20190208110041-unauthRole",
+    "IAMPrefix": "150179862823"
+}

@@ -1,0 +1,86 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "bibbgaares-20190208110041-authRole",
+			"UnauthRoleArn": "arn:aws:iam::150179862823:role/bibbgaares-20190208110041-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::150179862823:role/bibbgaares-20190208110041-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "bibbgaares-20190208110041-deployment",
+			"UnauthRoleName": "bibbgaares-20190208110041-unauthRole",
+			"StackName": "bibbgaares-20190208110041",
+			"StackId": "arn:aws:cloudformation:us-east-1:150179862823:stack/bibbgaares-20190208110041/b0e6add0-2bba-11e9-979e-0a780bcb48a6"
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/bibbgaares-20190208110041-deployment/amplify-cfn-templates/hosting/template.json",
+				"logicalId": "hostingS3AndCloudFront"
+			},
+			"lastPushTimeStamp": "2019-02-08T16:30:23.218Z",
+			"output": {
+				"S3BucketSecureURL": "https://bibbgaares-20190208110136-hostingbucket.s3.amazonaws.com",
+				"WebsiteURL": "http://bibbgaares-20190208110136-hostingbucket.s3-website-us-east-1.amazonaws.com",
+				"Region": "us-east-1",
+				"HostingBucketName": "bibbgaares-20190208110136-hostingbucket"
+			},
+			"lastPushDirHash": "JH4b6lo0bRdtiNJ90ij4DF/HkwY="
+		}
+	},
+	"auth": {
+		"cognito3765d540": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/bibbgaares-20190208110041-deployment/amplify-cfn-templates/auth/cognito3765d540-cloudformation-template.yml",
+				"logicalId": "authcognito3765d540"
+			},
+			"lastPushTimeStamp": "2019-02-08T16:30:23.222Z",
+			"output": {
+				"AppClientSecret": "1kgh1apbk34r74ktg6cfl2am18udfma45rsotnj3nbqdcb1rnuts",
+				"UserPoolId": "us-east-1_OiSViHr1a",
+				"AppClientIDWeb": "2gho8vq30qviksumrm6b4f1mh3",
+				"AppClientID": "7igtsm9ffq5qic5v9f9tub9gmb",
+				"IdentityPoolId": "us-east-1:1aa512a4-fdb0-4762-ab3c-cfa1956c9f96",
+				"IdentityPoolName": "cognito3765d540_identitypool_3765d540",
+				"UserPoolName": "cognito3765d540_userpool_3765d540"
+			},
+			"lastPushDirHash": "AFVq1BuqFUSu6B3ngfr79piT2c4="
+		}
+	},
+	"analytics": {
+		"bibbgaares": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/bibbgaares-20190208110041-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticsbibbgaares"
+			},
+			"lastPushTimeStamp": "2019-02-08T16:30:23.228Z",
+			"output": {
+				"appName": "bibbgaares",
+				"Region": "us-east-1",
+				"Id": "e366ae756e604753b04c6539c030e1c3"
+			},
+			"lastPushDirHash": "9BxgKi+/OZhv8tIJYWKcn9XmDQ0="
+		}
+	},
+	"storage": {
+		"bibbaresstore": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/bibbgaares-20190208110041-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"logicalId": "storagebibbaresstore"
+			},
+			"lastPushTimeStamp": "2019-02-08T16:30:23.228Z",
+			"output": {
+				"BucketName": "bibbgaares52fbb470918947319a396ebb58526e2c",
+				"Region": "us-east-1"
+			},
+			"lastPushDirHash": "JTUlcz1K2pQBXkvd6Rfgv+insFs="
+		}
+	}
+}
