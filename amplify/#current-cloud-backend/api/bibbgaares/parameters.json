@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "bibbgaares",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito3765d540",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "schemaGraphql": "s3://bibbgaares-20190208110041-deployment/amplify-appsync-files/schema.graphql.1549746533162",
+    "ResolverBucket": "bibbgaares-20190208110041-deployment",
+    "ResolverRootKey": "amplify-appsync-files",
+    "DeploymentTimestamp": "1549746533162"
+}
