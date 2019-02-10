@@ -179,10 +179,12 @@
 							"Outputs.UserPoolId"
 						]
 					},
-					"schemaGraphql": "s3://bibbgaares-20190208110041-deployment/amplify-appsync-files/schema.graphql.1549746533162",
+					"schemaGraphql": "s3://bibbgaares-20190208110041-deployment/amplify-appsync-files/schema.graphql.1549830443814",
 					"ResolverBucket": "bibbgaares-20190208110041-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1549746533162"
+					"DeploymentTimestamp": "1549830443814",
+					"ElasticSearchStreamingLambdaCodeS3Key": "amplify-appsync-files/python_streaming_function.zip",
+					"ElasticSearchStreamingLambdaCodeS3Bucket": "bibbgaares-20190208110041-deployment"
 				}
 			}
 		}

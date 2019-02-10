@@ -4,6 +4,7 @@
 export const onCreatePost = `subscription OnCreatePost {
   onCreatePost {
     id
+    slug
     title
     content
   }
@@ -12,6 +13,7 @@ export const onCreatePost = `subscription OnCreatePost {
 export const onUpdatePost = `subscription OnUpdatePost {
   onUpdatePost {
     id
+    slug
     title
     content
   }
@@ -20,6 +22,7 @@ export const onUpdatePost = `subscription OnUpdatePost {
 export const onDeletePost = `subscription OnDeletePost {
   onDeletePost {
     id
+    slug
     title
     content
   }

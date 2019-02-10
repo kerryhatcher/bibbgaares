@@ -17,7 +17,8 @@ class Cms extends Component {
     postMutation = async () => {
         const postDetails = {
             input: {
-                title: 'new post',
+                title: 'test post',
+                slug: 'test-post',
                 content: 'Amplify CLI rocks!'
             }
         };
