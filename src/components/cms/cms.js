@@ -1,23 +1,14 @@
 import React, {Component} from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-//import {createPost} from '../../graphql/mutations';
-import {listPosts} from '../../graphql/queries';
-
-const createPost = `mutation createPost($title:String! $content: String!) {
-    createPost(input:{
-      title:$title
-      content:$content
-    }){
-      id
-      title
-      content
-    }
-  }`
+import {createPost} from '../../graphql/mutations';
+import {listPosts, getPost} from '../../graphql/queries';
 
 
 class Cms extends Component {
     constructor(props) {
         super(props);
+        this.listQuery();
+        this.getQuery('c2bfd668-5869-47e1-ac2d-2d78f1a6439c');
         this.state = {
             contentID : props.match.params.id
         }
@@ -25,18 +16,24 @@ class Cms extends Component {
 
     postMutation = async () => {
         const postDetails = {
-        title: 'Party tonight!',
-        content: 'Amplify CLI rocks!'
+            input: {
+                title: 'new post',
+                content: 'Amplify CLI rocks!'
+            }
         };
         console.log(postDetails);
         const newPost = await API.graphql(graphqlOperation(createPost, postDetails));
-        alert(JSON.stringify(newPost));
+        console.log(JSON.stringify(newPost));
     }
 
     listQuery = async () => {
         console.log('listing posts');
-        const allPosts = await API.graphql(graphqlOperation(listPosts));
-        alert(JSON.stringify(allPosts));
+        this.state.postList = await API.graphql(graphqlOperation(listPosts));
+        console.log(JSON.stringify(this.state.postList));
+    }
+
+    getQuery = async (postID) => {
+        this.state.postData = await API.graphql(graphqlOperation(getPost, postID))
     }
     
 
@@ -47,6 +44,7 @@ class Cms extends Component {
                 <h3>ID: {this.props.match.params.id}</h3>
                 <button onClick={this.listQuery}>GraphQL Query</button>
                 <button onClick={this.postMutation}>GraphQL Mutation</button>
+                <p>{this.state.postData}</p>
             </div>
         )
     }
